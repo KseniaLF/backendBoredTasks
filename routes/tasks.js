@@ -9,4 +9,6 @@ router.post("/", tasksController.addOneTask);
 
 router.patch("/:id/resolved", tasksController.updateResolvedStatus);
 
+router.get("/achievements", tasksController.getAchievements);
+
 module.exports = router;

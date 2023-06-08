@@ -38,8 +38,31 @@ const updateResolvedStatus = async (req, res, next) => {
   res.json(updatedContact);
 };
 
+const getAchievements = async (req, res, next) => {
+  const list = await Task.find({}, "price type");
+
+  const pricesByType = {};
+
+  list.forEach((task) => {
+    const { type, price } = task;
+    if (pricesByType[type]) {
+      pricesByType[type] += price;
+    } else {
+      pricesByType[type] = price;
+    }
+  });
+
+  const result = Object.entries(pricesByType).map(([type, price]) => ({
+    type,
+    price: Math.round(price * 10),
+  }));
+
+  res.status(200).json(result);
+};
+
 module.exports = {
   getAllTasks: ctrlWrapper(getAllTasks),
   addOneTask: ctrlWrapper(addOneTask),
   updateResolvedStatus: ctrlWrapper(updateResolvedStatus),
+  getAchievements: ctrlWrapper(getAchievements),
 };
