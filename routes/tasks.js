@@ -7,4 +7,6 @@ router.get("/", tasksController.getAllTasks);
 
 router.post("/", tasksController.addOneTask);
 
+router.patch("/:id/resolved", tasksController.updateResolvedStatus);
+
 module.exports = router;

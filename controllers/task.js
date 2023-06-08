@@ -19,7 +19,21 @@ const addOneTask = async (req, res, next) => {
   res.status(201).json(newContact);
 };
 
+const updateResolvedStatus = async (req, res, next) => {
+  const updatedContact = await Task.findByIdAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true }
+  );
+
+  if (!updatedContact) {
+    throw new HttpError(404, "Not found");
+  }
+  res.json(updatedContact);
+};
+
 module.exports = {
   getAllTasks: ctrlWrapper(getAllTasks),
   addOneTask: ctrlWrapper(addOneTask),
+  updateResolvedStatus: ctrlWrapper(updateResolvedStatus),
 };

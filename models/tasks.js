@@ -16,6 +16,10 @@ const taskSchema = new Schema(
     price: {
       type: Number,
     },
+    resolved: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     versionKey: false,
