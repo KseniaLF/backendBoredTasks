@@ -5,6 +5,7 @@ const taskAddSchema = Joi.object({
   type: Joi.string().required(),
   accessibility: Joi.number().required(),
   price: Joi.number().required(),
+  image: Joi.string(),
 }).messages({
   "any.required": "missing fields",
 });

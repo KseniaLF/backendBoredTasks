@@ -20,6 +20,10 @@ const taskSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    image: {
+      type: String,
+      default: "",
+    },
   },
   {
     versionKey: false,

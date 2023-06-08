@@ -4,7 +4,13 @@ const { taskAddSchema } = require("../schemas/task");
 const Task = require("../models/tasks");
 
 const getAllTasks = async (req, res, next) => {
-  const list = await Task.find();
+  const { resolved } = req.query;
+  let list;
+
+  if (resolved) {
+    list = await Task.find({ resolved });
+  } else list = await Task.find();
+
   res.status(200).json(list);
 };
 
